@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Icons from "./components/Icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -5,20 +6,21 @@ import { Card, CardBody, Container, Button, Col, Row } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
-import { useState } from "react";
-
+// created array with length 9 intialize with an empty
 const itemArr = new Array(9).fill("empty");
 
 function App() {
   const [isCross, setIsCross] = useState(false);
   const [winMessage, setWinMessage] = useState("");
 
+  // restart the game
   const reloadGame = () => {
     setIsCross(false);
     setWinMessage("");
     itemArr.fill("empty", 0, 9);
   };
 
+  // game winning logic
   const checkIsWinner = () => {
     if (
       itemArr[0] === itemArr[1] &&
@@ -71,6 +73,7 @@ function App() {
     }
   };
 
+  // main game logic while playing cross and circle
   const changeItem = (itemNumber) => {
     if (winMessage) {
       return toast(winMessage, { type: "success" });
@@ -91,7 +94,7 @@ function App() {
       <ToastContainer position="bottom-center" />
       <Row>
         <Col md={6} className="offset-md-3">
-          {/* check if winner found if not then show whose turn is it */}
+          {/* check if winner found if not then show whose turn is it. Start Box */}
           {winMessage ? (
             <div className="mb-2 mt-2">
               <h1 className="text-primary text-uppercase text-center">
@@ -106,8 +109,9 @@ function App() {
               {isCross ? "Cross" : "Circle"} turns
             </h1>
           )}
+          {/* End Box */}
 
-          {/* tic-tac-toe game box */}
+          {/* tic-tac-toe game box start */}
           <div className="grid">
             {itemArr.map((item, index) => (
               <Card onClick={() => changeItem(index)} color="warning">
@@ -117,6 +121,7 @@ function App() {
               </Card>
             ))}
           </div>
+          {/* tic-tac-toe game box end */}
         </Col>
       </Row>
     </Container>
