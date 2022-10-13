@@ -19,7 +19,57 @@ function App() {
     itemArr.fill("empty", 0, 9);
   };
 
-  const checkIsWinner = () => {};
+  const checkIsWinner = () => {
+    if (
+      itemArr[0] === itemArr[1] &&
+      itemArr[0] === itemArr[2] &&
+      itemArr[0] !== "empty"
+    ) {
+      setWinMessage(`${itemArr[0]} won`);
+    } else if (
+      itemArr[3] === itemArr[4] &&
+      itemArr[4] === itemArr[5] &&
+      itemArr[3] !== "empty"
+    ) {
+      setWinMessage(`${itemArr[3]} won`);
+    } else if (
+      itemArr[6] === itemArr[7] &&
+      itemArr[7] === itemArr[8] &&
+      itemArr[6] !== "empty"
+    ) {
+      setWinMessage(`${itemArr[6]} won`);
+    } else if (
+      itemArr[0] === itemArr[3] &&
+      itemArr[3] === itemArr[6] &&
+      itemArr[0] !== "empty"
+    ) {
+      setWinMessage(`${itemArr[0]} won`);
+    } else if (
+      itemArr[1] === itemArr[4] &&
+      itemArr[4] === itemArr[7] &&
+      itemArr[1] !== "empty"
+    ) {
+      setWinMessage(`${itemArr[1]} won`);
+    } else if (
+      itemArr[2] === itemArr[5] &&
+      itemArr[5] === itemArr[8] &&
+      itemArr[2] !== "empty"
+    ) {
+      setWinMessage(`${itemArr[2]} won`);
+    } else if (
+      itemArr[6] === itemArr[4] &&
+      itemArr[4] === itemArr[2] &&
+      itemArr[6] !== "empty"
+    ) {
+      setWinMessage(`${itemArr[6]} won`);
+    } else if (
+      itemArr[0] === itemArr[4] &&
+      itemArr[4] === itemArr[8] &&
+      itemArr[0] !== "empty"
+    ) {
+      setWinMessage(`${itemArr[0]} won`);
+    }
+  };
 
   const changeItem = (itemNumber) => {
     if (winMessage) {
@@ -41,7 +91,8 @@ function App() {
       <ToastContainer position="bottom-center" />
       <Row>
         <Col md={6} className="offset-md-3">
-          { winMessage ? (
+          {/* check if winner found if not then show whose turn is it */}
+          {winMessage ? (
             <div className="mb-2 mt-2">
               <h1 className="text-primary text-uppercase text-center">
                 {winMessage}
@@ -54,10 +105,12 @@ function App() {
             <h1 className="text-center text-warning">
               {isCross ? "Cross" : "Circle"} turns
             </h1>
-          ) }
+          )}
+
+          {/* tic-tac-toe game box */}
           <div className="grid">
             {itemArr.map((item, index) => (
-              <Card>
+              <Card onClick={() => changeItem(index)} color="warning">
                 <CardBody className="box">
                   <Icons name={item} />
                 </CardBody>
