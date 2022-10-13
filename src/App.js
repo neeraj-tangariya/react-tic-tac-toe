@@ -1,14 +1,14 @@
 import React, { useReducer } from "react";
 import { Col, Container, Row } from "reactstrap";
 import { TodoContext } from "./context/TodoContext";
-import todoReducer from "./context/reducer";
+import CustomReducer from "./context/reducer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
 import Todos from "./components/Todos";
 
 function App() {
-  const [todos, dispatch] = useReducer(todoReducer, []);
+  const [todos, dispatch] = useReducer(CustomReducer, []);
 
   return (
     <TodoContext.Provider value={{ todos, dispatch }}>

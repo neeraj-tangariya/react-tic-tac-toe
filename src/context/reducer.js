@@ -1,6 +1,6 @@
 import { ADD_TODO, REMOVE_TODO } from "./action.types";
 
-export default (state, action) => {
+const CustomReducer = (state, action) => {
   switch (action.type) {
     case ADD_TODO:
       return [...state, action.payload];
@@ -10,3 +10,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default CustomReducer;
